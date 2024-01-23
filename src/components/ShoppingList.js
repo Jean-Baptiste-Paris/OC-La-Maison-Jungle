@@ -1,9 +1,14 @@
-import { plantList } from "../datas/plantList";
-import '../styles/ShoppingList.css'
-import CareScale from './CareScale'
+import { plantList } from "../datas/plantList"
+import "../styles/ShoppingList.css"
+import PlantItem from "./PlantItem"
 
-const plantCategories = plantList.reduce((categories, plant) =>
-  categories.includes(plant.category) ? categories : categories.concat(plant.category), [])
+const plantCategories = plantList.reduce(
+  (categories, plant) =>
+    categories.includes(plant.category)
+      ? categories
+      : categories.concat(plant.category),
+  []
+)
 
 function ShoppingList() {
   return (
@@ -14,16 +19,18 @@ function ShoppingList() {
         ))}
       </ul>
       <ul className="lmj-plant-list">
-        {plantList.map(({id, name, isBestSale, light, water}) => (
-          <li key={id} className='lmj-plant-item'>
-            {name}{isBestSale && <span>🔥</span>}
-            <CareScale careType='water' scaleValue={water} />
-            <CareScale careType='light' scaleValue={light} />
-          </li>
+        {plantList.map(({ id, cover, name, water, light }) => (
+          <PlantItem
+            id={id}
+            cover={cover}
+            name={name}
+            water={water}
+            light={light}
+          />
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
-export default ShoppingList;
+export default ShoppingList

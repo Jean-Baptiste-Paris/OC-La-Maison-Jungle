@@ -1,15 +1,23 @@
-function CareScale({careType, scaleValue}) {
-    const range = [1, 2, 3]
+import sunSVG from '../assets/sun.svg';
+import waterSVG from '../assets/water.svg';
 
-    const scaleType = (careType === 'light' && '☀️') || (careType === 'water' && '💧')
+function CareScale({ careType, scaleValue }) {
+  const range = [1, 2, 3];
 
-    return (
-        <div>
-            {range.map((rangeScale) =>
-                scaleValue >= rangeScale && <span key={rangeScale.toString()}>{scaleType}</span>
-            )}
-        </div>
-    )
+  const scaleType =
+    (careType === 'light' && <img src={sunSVG} alt="sun" />)
+    || (careType === 'water' && <img src={waterSVG} alt="water" />);
+
+  return (
+    <div>
+      {range.map(
+        (rangeScale) =>
+          scaleValue >= rangeScale && (
+            <span key={rangeScale.toString()}>{scaleType}</span>
+          )
+      )}
+    </div>
+  );
 }
 
-export default CareScale
+export default CareScale;

@@ -9,7 +9,7 @@ function App() {
       {/* <Cart /> */}
       <ShoppingList />
     </div>
-  );
+  )
 }
 
 export default App
