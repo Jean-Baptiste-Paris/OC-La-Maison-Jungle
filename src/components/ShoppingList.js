@@ -1,23 +1,21 @@
 import { plantList } from "../datas/plantList";
 
-const plantCategories = plantList.reduce((categories, plant) => {
-  if (!categories.includes(plant.category)) {
-    categories.push(plant.category);
-  }
-  return categories;
-}, []);
+const plantCategories = plantList.reduce((categories, plant) =>
+  categories.includes(plant.category) ? categories : categories.concat(plant.category), [])
 
 function ShoppingList() {
   return (
     <div>
       <ul className="lms-categories">
         {plantCategories.map((category, index) => (
-          <li key={`${category}-${index}`}>{category}</li>
+          <li key={category}>{category}</li>
         ))}
       </ul>
-      <ul className="lms-plants">
-        {plantList.map(({id, name}) => (
-          <li key={id}>{name}</li>
+      <ul className="lms-plant-list">
+        {plantList.map(({id, name, isBestSale}) => (
+          <li key={id} className='lmj-plant-item'>
+            {name}{isBestSale && <span>🔥</span>}
+          </li>
         ))}
       </ul>
     </div>
